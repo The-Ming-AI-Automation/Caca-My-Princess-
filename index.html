@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#FFF9F4">
+  <meta name="description" content="今天也要好好吃饭 ♡">
+  <title>今天吃什么呀？♡</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app-shell">
+    <header class="hero">
+      <div class="star-field" aria-hidden="true">
+        <span>✦</span><span>·</span><span>✧</span><span>˚</span>
+      </div>
+
+      <div class="mascot-wrap" aria-label="晓明">
+        <div class="mascot">
+          <span class="mascot-star">✦</span>
+          <span class="ear ear-left"></span>
+          <span class="ear ear-right"></span>
+          <span class="eye eye-left"></span>
+          <span class="eye eye-right"></span>
+          <span class="cheek cheek-left"></span>
+          <span class="cheek cheek-right"></span>
+          <span class="mouth">⌣</span>
+          <span class="scarf"></span>
+        </div>
+      </div>
+
+      <p class="eyebrow">♡ 给我最爱的小公主，Caca</p>
+      <h1>今天吃什么呀？</h1>
+      <p class="hero-copy">不想选的话，也没关系。<br>今天让我替你决定。</p>
+    </header>
+
+    <main>
+      <section class="card food-card">
+        <div class="section-heading">
+          <div><span class="step">01</span><h2>把想吃的告诉我</h2></div>
+          <span class="tiny-note">越纠结，越要交给我</span>
+        </div>
+
+        <div class="input-row">
+          <input id="foodInput" type="text" maxlength="30" autocomplete="off"
+                 placeholder="例如：寿司、拉面、火锅…" aria-label="输入想吃的食物">
+          <button id="addFoodBtn" class="add-btn" type="button">加入</button>
+        </div>
+
+        <div class="quick-add" aria-label="快速添加">
+          <button type="button" data-food="寿司">＋ 寿司</button>
+          <button type="button" data-food="拉面">＋ 拉面</button>
+          <button type="button" data-food="火锅">＋ 火锅</button>
+          <button type="button" data-food="鸡饭">＋ 鸡饭</button>
+          <button type="button" data-food="炸鸡">＋ 炸鸡</button>
+        </div>
+
+        <div id="foodChips" class="food-chips"></div>
+        <p id="emptyHint" class="empty-hint">先放几个你会想吃的，我来替你做最后决定。</p>
+      </section>
+
+      <section class="card mood-card">
+        <div class="section-heading">
+          <div><span class="step">02</span><h2>今天的你？</h2></div>
+        </div>
+
+        <div id="moodOptions" class="mood-grid">
+          <button class="mood active" type="button" data-mood="随便">
+            <span class="mood-icon">🎲</span><strong>随便都可以</strong><small>今天不想思考</small>
+          </button>
+          <button class="mood" type="button" data-mood="开心">
+            <span class="mood-icon">✦</span><strong>想吃开心的</strong><small>犒劳一下自己</small>
+          </button>
+          <button class="mood" type="button" data-mood="舒服">
+            <span class="mood-icon">♡</span><strong>想吃舒服的</strong><small>暖暖的、疗愈一点</small>
+          </button>
+          <button class="mood" type="button" data-mood="清爽">
+            <span class="mood-icon">˚</span><strong>想吃清爽的</strong><small>不要太负担</small>
+          </button>
+        </div>
+      </section>
+
+      <section class="ai-card">
+        <div class="ai-topline">
+          <span class="ai-badge">晓明 AI</span><span>可选 ♡</span>
+        </div>
+
+        <h2>如果你连想吃什么都不知道…</h2>
+        <p>告诉晓明今天的感觉就好。<br>例如：「今天好累，想吃热热的，不要太贵。」</p>
+
+        <textarea id="aiInput" maxlength="300"
+                  placeholder="今天的你，是怎么样的？"
+                  aria-label="告诉晓明今天的感觉"></textarea>
+
+        <button id="aiAnalyzeBtn" class="ghost-btn" type="button">✦ 让晓明听听</button>
+        <p id="aiStatus" class="ai-status" aria-live="polite"></p>
+      </section>
+
+      <button id="chooseBtn" class="choose-btn" type="button">
+        <span>♡</span><span>替我决定今天吃什么</span><span>✦</span>
+      </button>
+
+      <section id="resultCard" class="card result-card" aria-live="polite">
+        <p class="result-label">今天的答案是……</p>
+        <div id="resultEmoji" class="result-emoji">🍣</div>
+        <h2 id="resultFood">寿司</h2>
+        <p id="resultReason" class="result-reason">好啦，今天不用再纠结了。开心吃饭就好。♡</p>
+
+        <div class="result-actions">
+          <button id="acceptBtn" class="result-btn primary-result" type="button">♡ 好，就这个</button>
+          <button id="againBtn" class="result-btn" type="button">🎲 再选一次</button>
+        </div>
+        <p id="loveMessage" class="love-message">晓明批准：今天不许再说「都可以」了 😌</p>
+      </section>
+
+      <section id="historyCard" class="card history-card hidden">
+        <div class="section-heading">
+          <div><span class="step">03</span><h2>最近的决定</h2></div>
+        </div>
+        <div id="historyList" class="history-list"></div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="footer-star">✦</div>
+      <p>今天也要好好吃饭。</p>
+      <small>made with love ♡</small>
+    </footer>
+  </div>
+
+
+  <div id="boyfriendModal" class="boyfriend-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="boyfriendTitle">
+    <div class="boyfriend-backdrop" data-close-boyfriend></div>
+    <div class="boyfriend-card" role="document">
+      <button id="closeBoyfriendBtn" class="boyfriend-close" type="button" aria-label="关闭">×</button>
+      <div class="boyfriend-photo-wrap">
+        <img id="boyfriendPhoto" class="boyfriend-photo" src="boyfriend.jpg" alt="Caca 的男朋友"
+             onerror="this.style.display='none'; document.getElementById('boyfriendPhotoFallback').style.display='grid';">
+        <div id="boyfriendPhotoFallback" class="boyfriend-photo-fallback" aria-hidden="true">♡</div>
+      </div>
+      <p class="boyfriend-kicker">来自你的男朋友 ♡</p>
+      <h2 id="boyfriendTitle">乖乖，今天吃饭啦</h2>
+      <p class="boyfriend-message">
+        我为你今天做了选择感到骄傲。
+        <br>有好好选择食物，也有好好按时吃饭。
+        <br><strong>I'm proud of you for choosing your food and eating on time, my love. ♡</strong>
+      </p>
+      <p id="boyfriendFoodMessage" class="boyfriend-food-message">今天就好好吃这一份吧。</p>
+      <button id="boyfriendOkayBtn" class="boyfriend-okay" type="button">好啦，我去吃饭了 ♡</button>
+    </div>
+  </div>
+
+  <div id="celebration" class="celebration" aria-hidden="true"></div>
+  <script src="script.js"></script>
+</body>
+</html>
